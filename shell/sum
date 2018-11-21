@@ -1,0 +1,27 @@
+#!/bin/bash
+qian=0
+hou=1
+for((i=1;i<=2;i++))
+{
+temp=$((qian+hou));
+qian=$hou;
+hou=$temp;
+echo $temp;
+}
+
+function CheckCpu
+ {
+ PID=$1
+ cpu=`GetCpu $PID`
+ if [ $cpu -gt 1 ]
+ then
+ {
+ echo “The usage of cpu is larger than 80%”
+ }
+ else
+ {
+ echo “The usage of cpu is normal”
+ }
+ fi
+ }
+

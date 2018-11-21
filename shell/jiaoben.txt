@@ -1,0 +1,62 @@
+刘达远 16:54:00
+awk '{
+for (i=1;i<=NF;i++)
+{
+print $i
+}
+}' test | egrep "[0-9]"
+
+
+
+
+
+
+
+
+刘达远(FA1654902DC4) 17:24:22
+map
+
+awk '{
+for (i=1;i<=NF;i++)
+{
+print $i
+}
+}' test | egrep "^[0-9]{3}$" | awk '{
+if (substr($1,2,1) % 2 == 0) {
+print "nan"
+}
+else {
+print "nv"
+}
+}'
+刘达远(FA1654902DC4) 17:24:38
+reduce
+
+awk '{print /nan/}' test | awk '{sum += $1} END {print sum}' & awk '{print /nv/}' test | awk '{sum += $1} END {print sum}'
+
+
+
+
+
+
+map
+
+#!/bin/bash
+cat | awk '{
+for (i=1;i<=NF;i++)
+{
+print $i
+}
+}' | egrep "^[0-9]{3}$" | awk '{
+if (substr($1,2,1) % 2 == 0) {
+print "nan"
+}
+else {
+print "nv"
+}
+}'
+刘达远(FA1654902DC4对话) 18:04:08
+reduce 
+
+awk '{print /nan/}' | awk '{sum1 += $1; sum2 += 1-$1} END {print "nan:"sum1; print "nv:"sum2}'
+

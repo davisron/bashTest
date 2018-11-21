@@ -1,0 +1,8 @@
+#!/bin/bash
+
+temp="111" "2222"
+for num in $temp
+do 
+echo $num
+done
+
